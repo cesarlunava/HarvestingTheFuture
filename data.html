@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de ETo y Estrés Hídrico</title>
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://code.earthengine.google.com/ee-api.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ui-eh.js"></script> <!-- Dependencia para UI de GEE -->
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+    .legend {
+      background-color: white;
+      border-radius: 5px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    // Autenticación en Google Earth Engine
+    ee.data.authenticateViaPopup(function() {
+      ee.initialize();
+      createMap();
+    });
+
+    function createMap() {
+      // Definir el área de interés (Napa Valley)
+      var napaValley = ee.FeatureCollection("TIGER/2018/Counties")
+        .filter(ee.Filter.eq('NAME', 'Napa'));
+
+      // Función para calcular índices y métricas
+      var calculateIndices = function(image) {
+        var ndvi = image.normalizedDifference(['SR_B5', 'SR_B4']).rename('NDVI');
+        var ndwi = image.normalizedDifference(['SR_B3', 'SR_B5']).rename('NDWI');
+        var lst = image.select('ST_B10').multiply(0.00341802).add(149.0).subtract(273.15).rename('LST');
+        var eto = ee.Image(5).multiply(lst.pow(2).multiply(0.0023)).add(lst.multiply(0.0005)).rename('ETo');
+        var waterStress = ee.Image(1).subtract(ndwi).rename('WaterStress');
+        return image.addBands([ndvi, ndwi, lst, eto, waterStress]);
+      };
+
+      // Obtener la colección de imágenes Landsat 8 más reciente
+      var collection = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
+        .filterBounds(napaValley)
+        .sort('system:time_start', false)
+        .first();
+
+      // Calcular índices
+      var processedImage = calculateIndices(collection);
+
+      // Definir visualizaciones
+      var etoVis = {min: 0, max: 10, palette: ['blue', 'cyan', 'green', 'yellow', 'red']};
+      var stressVis = {min: 0, max: 1, palette: ['blue', 'green', 'yellow', 'orange', 'red']};
+      var ndwiVis = {min: -1, max: 1, palette: ['red', 'yellow', 'green', 'cyan', 'blue']};
+      var ndviVis = {min: -1, max: 1, palette: ['red', 'yellow', 'green']};
+      var lstVis = {min: 0, max: 50, palette: ['blue', 'green', 'yellow', 'orange', 'red']};
+
+      // Crear el mapa de GEE
+      var map = new ui.Map();
+      map.setCenter(-122.2963, 38.2975, 10); // Centro en Napa Valley
+      map.addLayer(processedImage.select('ETo'), etoVis, 'ETo (mm/día)');
+      map.addLayer(processedImage.select('WaterStress'), stressVis, 'Estrés Hídrico');
+      map.addLayer(processedImage.select('NDWI'), ndwiVis, 'NDWI');
+      map.addLayer(processedImage.select('NDVI'), ndviVis, 'NDVI');
+      map.addLayer(processedImage.select('LST'), lstVis, 'LST (°C)');
+
+      // Añadir el mapa al contenedor del HTML
+      map.addTo(document.getElementById('map'));
+    }
+  </script>
+</body>
+</html>
