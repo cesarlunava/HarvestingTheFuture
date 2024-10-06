@@ -1,0 +1,18 @@
+.btns {
+    display:flex;
+    column-gap: 2rem;
+    background-color: var(--color-white-shade);
+}
+.btn {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    cursor: pointer;
+    transition: 
+    scale 0.25s ease-in,
+    opacity 0.25s ease-in,
+    filter 0.25s ease-in;
+
+    &:hover {
+        scale: 1.2;
+    }
+}
