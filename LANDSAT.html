@@ -1,225 +1,25 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sisri - Inicio</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #e8f5e9;
-        }
-        header {
-            background-color: #0b3d7e;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-            position: relative;
-        }
-        header img {
-            width: 160px; /* Ajusta el tamaño del logo */
-            height: auto;
-        }
-        header .auth-links {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%); /* Centra verticalmente */
-            color: azure;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #1da4ce;
-            padding: 10px 0;
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-        nav a:hover {
-            background-color: #1da4ce;
-        }
-        .container {
-            padding: 20px;
-        }
-        .carousel-inner img {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-        }
-        .carousel-caption {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .feature-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .feature-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-            color: #2066ff;
-        }
-        .feature-card p {
-            font-size: 1rem;
-            margin: 0;
-        }
-        .section-title {
-            font-size: 2rem;
-            color: #2066ff;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        footer {
-            background-color: #0b3d7e;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        .signup-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        .signup-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-        h2 {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #ffffff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #ffffff;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <img src="images/Captura de pantalla 2024-10-05 150037.png" alt="Logo">
-        <div class="auth-links">
-            <a href="login.html">Sign in</a>
-            <a href="signup.html">Sign up</a>
-        </div>
-    </header>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="LANDSAT.html">LANDSAT</a>
-        <a href="VALLEYS.html">VALLEYS</a>
-        <a href="US.html">US</a>
-    </nav>
-    <div  id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="2000">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="images/4449_scott-kelly-iss-amanecer.jpg" class="d-block w-100" alt="Sistema de Riego Inteligente">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Observing from space</h5>
-                    <p>The basis of the project is satelites' data</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="images/99dd6df5e010331ce3b73af2b924e155_1024_1024.webp" class="d-block w-100" alt="Monitoreo Continuo">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Using satelites</h5>
-                    <p>This technology is our main tool</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="images/600px-Draft_Samper_638965916-image17.png" class="d-block w-100" alt="Uso de IA">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Environmental analysis</h5>
-                    <p>Calculating temperature, wind velocity and crop's health</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Siguiente</span>
-        </a>
+<!DOCTYPE html> <html lang="en"> coding by _. codedevotee <head> <meta charset="UTF-8"> meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Travel Slider</title> <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+    <div class="container"> <div class="slide">
+    <div class="item"><div class="content">
+    <div class="name">Switzerland</div>
+    <div class="des">Lorem ipsum dolor. </div>
+    <button>See More</button></div></div>
+    <div class="item"><div></div>
+    class="content">
+    <div class="name">Finland</div><div class="des">Lorem ipsum dolor. </div>
+    <button>See More</button></div></div>
+    Repeat items for other destinations
+    →
+    <div>
+    <div class="button">
+    <button class="prev"*i
+    class="fa-solid fa-arrow-left"></i></button>
+    <button class="next"*i
+    class="fa-solid fa-arrow-right"></i><button>
     </div>
-    <div class="container">
-        <div class="section">
-            <h2 class="section-title">Características del Sistema</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <h3>Sistema de Riego Inteligente</h3>
-                        <p>Optimiza el uso del agua con nuestro sistema avanzado de riego.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <h3>Monitoreo Continuo</h3>
-                        <p>Monitorea las condiciones del cultivo en tiempo real.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <h3>Uso de IA</h3>
-                        <p>Implementa inteligencia artificial para mejorar la eficiencia.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    <footer>
-        <p>&copy; HarvestingTheFuture</p>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-
+    «script sre="script.js"></script>
+    </body>
+    </html>
